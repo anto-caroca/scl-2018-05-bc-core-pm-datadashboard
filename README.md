@@ -44,7 +44,7 @@ Nuestro proceso de diseño se inició teniendo en cuenta la necesidad para visua
 datos requeridos. Buscamos una forma simple y sencilla para dar solución a esta problemática.
 Seguido a ello, dibujamos un sketch de la solución (prototipo de baja fidelidad) mientras discutiamos cada componente y su funcionalidad.
 
-![Sketch de la solución](/home/antonella/Escritorio/proyectos/scl-2018-05-bc-core-pm-datadashboard/sketch-solucion.jpg)
+![Sketch de la solución](/sketch-solucion.jpg)
 
 
 #### 3) Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
