@@ -28,7 +28,7 @@ Empezamos con un sketch básico hecho a la mano para maquetear toda la informaci
 
 
 
-![version móvil](https://www.figma.com/file/F8I0Zvd5Sdf91MK3am589kc7/mobile-version?node-id=10%3A88)
+[version móvil](https://www.figma.com/file/F8I0Zvd5Sdf91MK3am589kc7/mobile-version?node-id=10%3A88)
 
 Usamos los colores del guía de Laboratoria, y estamos esperando la segunda ronda de entrevistas del usuario, por lo que tenemos las siguientes preguntas:
 
