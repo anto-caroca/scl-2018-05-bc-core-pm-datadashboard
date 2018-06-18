@@ -1,47 +1,46 @@
-/*
-import { promises } from "fs"; NO FUNCIONA
-function getData(method, url){
-    return new Promise(function (resolve, reject){
-        var xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function(){
-            if(this.status >= 200 && this.status < 300){
-                resolve(xhr.response);
-            }else{
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function(){
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-getData('GET', 'https://laboratoria-la-staging.firebaseapp.com/campuses').then(function(data){
-    let campuses = JSON.parse(data);
-    let output = '';
-    for(let api of campuses){
-        output += `
-        <li>
-            <h3>${lab.campuses}</h3>
-            <p>${lab.id}</p>
-            <p>${lab.name}</p>
-            <p>${lab.locale}</p>
-            <p>${lab.timezone}</p>
-            <p>${lab.active}</p>
-        </li>
-        `;
+function getData (method, url) {
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest()
+    xhr.open(method, url)
+    xhr.onload = function () {
+      if (this.status >= 200 && this.status < 300) {
+        resolve(xhr.response)
+      } else {
+        reject({
+          status: this.status,
+          statusText: xhr.statusText
+        })
+      }
     }
-    document.getElementById('template').innerHTML = output;
-}).catch(function(err){
-});
-*/function loadJson () {
+    xhr.onerror = function () {
+      reject({
+        status: this.status,
+        statusText: xhr.statusText
+      })
+    }
+    xhr.send()
+  })
+}
+getData('GET', 'https://laboratoria-la-staging.firebaseapp.com/campuses').then(function (data) {
+  let campuses = JSON.parse(data)
+  let output = ''
+  for (let lab of campuses) {
+    output += `
+        <li>
+            <h3>Campus</h3>
+            <p>ID: ${lab.id}</p>
+            <p>Nombre: ${lab.name}</p>
+            <p>Lugar: ${lab.locale}</p>
+            <p>Zona Horaria: ${lab.timezone}</p>
+            <p>Activo: ${lab.active}</p>
+        </li>
+        `
+  }
+  document.getElementById('template').innerHTML = output
+}).catch(function (err) {
+})
+/*
+function loadJson () {
   var xhr = new XMLHttpRequest()
   xhr.open('GET', 'users.json', true)
   xhr.onload = function () {
@@ -61,5 +60,6 @@ getData('GET', 'https://laboratoria-la-staging.firebaseapp.com/campuses').then(f
       document.getElementById('template').innerHTML = output
     }
   }
-  xhr.send()
+  xhr.open()
 }
+*/
