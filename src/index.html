@@ -10,12 +10,21 @@
       <h1 id ="heading">Laboratoria data dashboard</h1>
       <p>api de laboratoria</p>
     </header>
-    <button id = "button">Click</button>
-    <div id = "container">
+    <select id = "cohortList">
+      <option value="">seleccionar un cohort</option>
+    </select>
+    <select id = "usersList">
+      <option value="">seleccionar un usuario</option>
+    </select>
+
+    <button id = "progressStats">Get Progress Stats</button>
+    <button id = "progressEvents">Get Progress Events</button>
+    <div id = "output">
       <ul id = "template">
 
       </ul>
     </div>
+    <div id = "output2"></div>
 
     <script src="main.js"></script>
     <script src="data.js"></script>
