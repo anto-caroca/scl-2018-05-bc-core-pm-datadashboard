@@ -1,65 +1,52 @@
-function getData (method, url) {
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest()
-    xhr.open(method, url)
-    xhr.onload = function () {
-      if (this.status >= 200 && this.status < 300) {
-        resolve(xhr.response)
-      } else {
-        reject({
-          status: this.status,
-          statusText: xhr.statusText
-        })
+
+const url = 'https://api.laboratoria.la/cohorts'
+let users
+let cohort
+const select = document.getElementById('cohortList')
+const select2 = document.getElementById('userList')
+let progress
+
+function computeUsersStats (users, progress, courses) {
+
+}
+
+window.onload = () => {
+  fetch('https://api.laboratoria.la/cohorts')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      // recorrer la data
+      // asignar al select las opciones
+      // crear nuevo select con forma que nos da js con la data que ya sacamos
+      for (let i = 0; i < data.length; i++) {
+        select.options[select.options.length] = new Option(data[i].id, data[i].id)
       }
-    }
-    xhr.onerror = function () {
-      reject({
-        status: this.status,
-        statusText: xhr.statusText
+      select.addEventListener('change', (event) => {
+        cohort = select.value
+        return progreso(cohort)
       })
-    }
-    xhr.send()
-  })
+    })
 }
-getData('GET', 'https://laboratoria-la-staging.firebaseapp.com/campuses').then(function (data) {
-  let campuses = JSON.parse(data)
-  let output = ''
-  for (let lab of campuses) {
-    output += `
-        <li>
-            <h3>Campus</h3>
-            <p>ID: ${lab.id}</p>
-            <p>Nombre: ${lab.name}</p>
-            <p>Lugar: ${lab.locale}</p>
-            <p>Zona Horaria: ${lab.timezone}</p>
-            <p>Activo: ${lab.active}</p>
-        </li>
-        `
-  }
-  document.getElementById('template').innerHTML = output
-}).catch(function (err) {
-})
-/*
-function loadJson () {
-  var xhr = new XMLHttpRequest()
-  xhr.open('GET', 'users.json', true)
-  xhr.onload = function () {
-    if (this.status === 200) {
-      var users = JSON.parse(this.responseText)
-      var output = ''
-      for (var i in users) {
-        output += '<ul>' +
-            '<li>ID: ' + users[i].id + '</li>' +
-            '<li>signupCohort: ' + users[i].signupCohort + '</li>' +
-            '<li>TimeZone: ' + users[i].timezone + '</li>' +
-            '<li>Name: ' + users[i].name + '</li>' +
-            '<li>Locale: ' + users[i].locale + '</li>' +
-            '<li>Role: ' + users[i].role + '</li>' +
-            '</ul>'
-      }
-      document.getElementById('template').innerHTML = output
-    }
-  }
-  xhr.open()
+
+const progreso = (cohort) => {
+  fetch(`${url}/${cohort}/progress`)
+    .then(res => res.json())
+    .then((data2) => {
+      progress = data2
+      console.log(progress)
+      Object.entries(data2)
+    })
 }
-*/
+const usuarios = (user) => {
+  fetch(`${url}/${cohort}/users`)
+    .then(res => res.json())
+    .then((data) => {
+      users = data
+      Object.entries(data)
+      console.log(data)
+    })
+}
+// let co = document.getElementById('cohortList')
+// co.addEventListener('click', cohorts)
+// document.getElementById('progressStats').addEventListener('click', getProgressStats)
+// function getProgressEvents () { */
